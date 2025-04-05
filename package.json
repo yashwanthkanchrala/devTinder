@@ -1,0 +1,23 @@
+{
+  "name": "devtinder",
+  "version": "1.0.0",
+  "description": "devTinder project",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "devTinder"
+  },
+  "keywords": [
+    "devTinder"
+  ],
+  "author": "yashwanth",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
