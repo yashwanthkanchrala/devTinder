@@ -1,8 +1,62 @@
 const express = require("express");
 const app = express();
-const { AdminAuth,userAuth } = require("./middlewares/auth.js")
+const { AdminAuth,userAuth } = require("./middlewares/auth.js");
+const connectDB = require("./config/database.js");
+const User = require("./models/user.js");
 
-app.get("/getUserData",(req,res) => {
+app.post("/signup",async(req,res) => {
+    const user = new User({
+        firstName: "singh",
+        lastName: "yuvraj",
+        emailId: "yuvraj@gamail.com",
+        password: "abhishek",
+    });
+    try {
+        await user.save();
+        res.send("data successsfully saved");
+    } catch(err){
+        res.status(400).send("error savimg the user:" +err.message)
+    };
+    
+});
+
+
+
+
+
+ connectDB()
+ .then(()=>{
+     console.log("Database connection established...");
+     app.listen(7777,() => {
+        console.log("i am listening port no 7777");
+    });
+ })
+ .catch((err)=>{
+     console.log("Database connection not established");
+   
+ });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*app.get("/getUserData",(req,res) => {
     try{
         throw new Error("ghtyy");
         res.send("ok");
@@ -16,22 +70,7 @@ app.use("/",(err,req,res,next) => {
     if(err) {
         res.status(500).send("error contact support")
     };
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+});*/
 
 /*app.use("/admin",AdminAuth);
 
@@ -75,6 +114,3 @@ app.get("/",(req,res) => {
     res.send("hi from the server")
 });*/
 
-app.listen(7777,() => {
-    console.log("i am listening");
-});
